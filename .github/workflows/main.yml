@@ -38,7 +38,7 @@ jobs:
     - uses: wei/curl@master
       with:
         args: -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip
-    - run: unzip pipeline-scan-LATEST.zip
+    - run: unzip -o pipeline-scan-LATEST.zip
     
     - uses: actions/setup-java@v1
       with:
