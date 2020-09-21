@@ -37,7 +37,7 @@ jobs:
   pipeline-scan:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
+    steps:
     - uses: wei/curl@master
       with:
         args: -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip
