@@ -35,6 +35,7 @@ jobs:
        #run: gradle clean build
        #run: maven clean verify     
   pipeline-scan:
+    runs-on: ubuntu-latest
     steps:
     - name: Download the pipeline scan jar
     - uses: wei/curl@master
