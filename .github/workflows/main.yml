@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Pipeline Security Analysis
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -35,23 +35,16 @@ jobs:
         name: my-artifact
         path: result.zip
 
-    - uses: wei/curl@master
+    - uses: veracode/veracode-pipeline-scan-action@master
       with:
-        args: -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip
-    - run: unzip -o pipeline-scan-LATEST.zip
-    
-    - uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-    - run: java -Dpipeline.debug=true -jar pipeline-scan.jar --veracode_api_id "${{secrets.VERACODE_API_ID}}" --veracode_api_key "${{secrets.VERACODE_API_KEY}}" --file result.zip
-      continue-on-error: true
+        filepath: //set filepath here for the artifact you wish to scan (e.g. .zip, .war, .jar)
     - uses: actions/upload-artifact@v1
       with:
         name: ScanResults
         path: results.json
     - name: Convert pipeline scan output to SARIF format 
       id: convert
-      uses: Lerer/veracode-pipeline-scan-results-to-sarif@v1.0.1
+      uses: veracode/veracode-pipeline-scan-results-to-sarif@master
       with:
         pipeline-results-json: results.json
     - uses: github/codeql-action/upload-sarif@v1
