@@ -18,26 +18,22 @@ jobs:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: build
-       
-        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: build 
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
       with:
         repository: ''
-
     - uses: papeloto/action-zip@v1
       with:
         files: /
         recursive: true
         dest: result.zip
-          
     - uses: actions/upload-artifact@v1
       with:
         name: my-artifact
         path: result.zip
        #run: gradle clean build
-       #run: maven clean verify
-    - name: pipeline-scan       
+       #run: maven clean verify     
   pipeline-scan:
     steps:
     - name: Download the pipeline scan jar
