@@ -1,4 +1,4 @@
-# This workflow will inititiave a Veracide Static Analysis Pipeline scan, return a results.json and convert to SARIF for upload as a code scanning alert
+e# This workflow will inititiave a Veracide Static Analysis Pipeline scan, return a results.json and convert to SARIF for upload as a code scanning alert
 
 name: Veracode Static Analysis Pipeline Scan
 
@@ -58,7 +58,7 @@ jobs:
         
     - name: Convert pipeline scan output to SARIF format 
       id: convert
-      uses: Lerer/veracode-pipeline-scan-results-to-sarif@v1.0.1
+      uses: veracode/veracode-pipeline-scan-results-to-sarif@master
       with:
         pipeline-results-json: results.json
     - uses: github/codeql-action/upload-sarif@v1
